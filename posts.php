@@ -26,16 +26,49 @@
                 </p>
             </header>
 
-            <table>
-                <tr>
+                <table class="table is-narrow is-hoverable mt-4">
+                    <thead class="has-text-centered">
+                    <tr>
+                        <th class="is-info">Topic</th>
+                        <th class="is-info">Posts</th>
+                    </tr>
+                    </thead>
+
+                    <?php
+                    $topicArray = $db->getTopicTable();
+
+                    foreach ($topicArray as $topics) {
+                        echo '<tbody>';
+                            echo '<tr class="">';
+
+                            echo '<td>';
+
+                                echo '<a href="posts.php?topicId='.$topics->id.'">'.$topics->name.'</a>';
+
+                            echo '</td>';
+
+                            echo '<td class="has-text-centered">';
+
+                                echo $topics->postsCount;
+
+                            echo '</td>';
+
+                            echo '</tr>';
+                        echo '</tbody>';
+                    }
+                    ?>
+                </table>
+
+            <table class="">
+                <tr class="has-text-centered">
                     <th>Title</th>
                     <th>Time</th>
                     <th>Author</th>
                 </tr>
 
             <?php
-                $id = $_GET['topicId'];
-                $postArray = $db->getPostsTable($id);
+                $topicId = $_GET['topicId'];
+                $postArray = $db->getPostsTable($topicId);
                 //var_dump($postArray);
 
                 foreach ($postArray as $post) {
@@ -43,7 +76,7 @@
                     echo '<tr>';
                         echo '<td>';
 
-                            echo '<a href="article.php?topicId="'.$id.'"?articleId="'.$post->id.'">';
+                            echo '<a href="article.php?topicId="'.$topicId.'"?postId="'.$post->id.'">';
 
                             echo $post->title;
 

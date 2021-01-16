@@ -33,11 +33,6 @@ class DB extends PDO {
             $query->execute();
 
             return $query->fetchAll(PDO::FETCH_OBJ);
-
-            /*$query = $this->prepare("SELECT `posts`.*, `users`.`firstName`, `users`.`lastName` FROM `users` JOIN `users` ON `posts`.`usersId` = `users`.`id` WHERE `posts`.`topicsId` = :topicId AND `posts`.`id` IS NULL ORDER BY `posts`.`timestamp` DESC");
-            $query->bindParam(':topicId', $topicId, PDO::PARAM_INT);
-            $query->execute();
-            return $query->fetchAll(PDO::FETCH_OBJ);*/
         }
 
         catch (PDOException $e) {
@@ -64,6 +59,25 @@ class DB extends PDO {
         }
 
         catch (PDOException $e) {
+
+            echo "There was an error during reading: ";
+
+            echo $e->getMessage();
+        }
+    }
+
+    public function getSinglePost ($postId) {
+        try {
+            $query = $this->prepare("SELECT P.title, P.content, P.timestamp, U.firstName, U.lastName FROM users U JOIN posts P ON U.id = P.usersId WHERE U.id = :postId");
+
+            $query->bindParam(':postId', $postId);
+
+            $query->execute();
+
+            return $query->fetch(PDO::FETCH_OBJ);
+        }
+
+        catch (PDOException $e){
 
             echo "There was an error during reading: ";
 

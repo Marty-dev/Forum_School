@@ -27,7 +27,7 @@
                 </header>
 
                 <table class="table is-narrow is-hoverable mt-4">
-                    <thead>
+                    <thead class="has-text-centered">
                         <tr>
                             <th class="is-info">Topic</th>
                             <th class="is-info">Posts</th>
@@ -47,7 +47,7 @@
 
                                 echo '</td>';
 
-                                echo '<td>';
+                                echo '<td class="has-text-centered">';
 
                                     echo $topics->postsCount;
 
