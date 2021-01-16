@@ -16,45 +16,61 @@
 
     <body>
 
-    <h1>Gaming Forum</h1>
+    <section class="hero is-primary is-fullheight">
+        <div class="hero-body>">
+            <div class="container">
 
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Time</th>
-        </tr>
+            <header class="card-header has-background-warning mt-4 p-3">
+                <p class="card-header-title">
+                    Gaming Forum
+                </p>
+            </header>
 
-    <?php
-    $id = $_GET['topicId'];
-    $postArray = $db->getPostsTable($id);
-    var_dump($postArray);
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Time</th>
+                    <th>Author</th>
+                </tr>
 
-    foreach ($postArray as $post) {
+            <?php
+                $id = $_GET['topicId'];
+                $postArray = $db->getPostsTable($id);
+                //var_dump($postArray);
 
-        echo '<tr>';
+                foreach ($postArray as $post) {
 
-            echo '<td>';
+                    echo '<tr>';
+                        echo '<td>';
 
-                echo '<a href="article.php?topicId="'.$id.'"?articleId="'.$post->id.'">';
+                            echo '<a href="article.php?topicId="'.$id.'"?articleId="'.$post->id.'">';
 
-                echo $post->title;
+                            echo $post->title;
 
-                echo '</a>';
+                            echo '</a>';
 
-            echo '</td>';
+                        echo '</td>';
 
+                        echo '<td>';
 
+                            echo $post->timestamp;
 
-            echo '<td>';
+                        echo '<td>';
 
-                echo $post->timestamp;
+                        echo '<td>';
 
-            echo '<td>';
+                            echo $post->firstName;
+                            echo $post->lastName;
 
-        echo '</tr>';
-    }
-    ?>
+                        echo '</td>';
 
-    </table>
+                    echo '</tr>';
+                }
+            ?>
+
+            </table>
+            </div>
+        </div>
+    </section>
     </body>
 </html>
