@@ -68,7 +68,7 @@ class DB extends PDO {
 
     public function getSinglePost ($postId) {
         try {
-            $query = $this->prepare("SELECT P.title, P.content, P.timestamp, U.firstName, U.lastName FROM users U JOIN posts P ON U.id = P.usersId WHERE U.id = :postId");
+            $query = $this->prepare("SELECT P.title, P.content, P.timestamp, U.firstName, U.lastName FROM users U JOIN posts P ON U.id = P.usersId WHERE P.id = :postId");
 
             $query->bindParam(':postId', $postId);
 
