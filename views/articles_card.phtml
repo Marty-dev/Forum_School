@@ -10,6 +10,7 @@
             <?php
             if (isset($_GET['topicId'])) {
                 $topicId = htmlspecialchars($_GET['topicId']);
+                /** @noinspection PhpUndefinedVariableInspection */
                 $postArray = $db->getPostsTable($topicId);
                 //var_dump($postArray);
 
