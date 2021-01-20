@@ -55,7 +55,7 @@ class User extends DB
     /**
      * @return bool
      */
-    public function logut(): bool
+    public function loguut(): bool
     {
         return session_destroy();
     }

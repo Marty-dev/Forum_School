@@ -33,14 +33,15 @@ $post = new Post();
 
                     echo '<td>';
 
-                    echo $post->firstName;
+                    echo $post->firstName;?> <?php
                     echo $post->lastName;
 
                     echo '</td>';
 
                     echo '<td>';
 
-                    echo $post->timestamp;
+                    $timestamp = strtotime($post->timestamp);
+                    echo date( 'jS F Y',$timestamp);
 
                     echo '</td>';
 
