@@ -23,13 +23,11 @@
     <section class="hero is-fullheight">
         <div class="hero-body>">
             <div class="container">
-
-                <header class="card-header has-background-warning mt-4 p-3">
-                    <p class="card-header-title">
-                    Gaming Forum
-                    </p>
-                </header>
-
+                <div class="tile is-ancestor">
+                    <?php
+                        require_once './views/navbar_card.phtml';
+                    ?>
+                </div>
                 <div class="tile is-ancestor mt-4">
                     <?php
                         require_once './views/topics_card.phtml';
