@@ -1,6 +1,5 @@
 <?php
 
-
 class DB extends PDO {
     private const HOST = "localhost";
     private const DATABASE = "velekma";

@@ -1,4 +1,7 @@
 <?php
+
+    // TODO: Add login / logout
+
     require_once './models/DB.class.php';
 
     $db = new DB();

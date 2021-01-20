@@ -21,6 +21,10 @@ $post = new Post();
 <body>
 
 <?php
+    // TODO: Add create form
+    // TODO: Add edit form
+    // TODO: Add remove button
+
     $topicId = htmlspecialchars($_GET['topicId']);
     $postId = htmlspecialchars($_GET['postId']);
     $post = $post->getByID(intval($postId));

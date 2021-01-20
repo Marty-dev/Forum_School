@@ -49,4 +49,10 @@ class Post extends DB
             echo $e->getMessage();
         }
     }
+
+    public function create() {}
+
+    public function edit(int $id) {}
+
+    public function delete(int $id) {}
 }
