@@ -4,6 +4,7 @@ class Post extends DB
 {
     /**
      * @param int $topicId
+     *
      * @return array
      */
     public function getAll(int $topicId)
@@ -16,9 +17,7 @@ class Post extends DB
             $query->execute();
 
             return $query->fetchAll(PDO::FETCH_OBJ);
-        }
-
-        catch (PDOException $e) {
+        } catch (PDOException $e) {
 
             echo "There was an error during reading: ";
 
@@ -31,7 +30,8 @@ class Post extends DB
      *
      * @return mixed
      */
-    public function getByID (int $id) {
+    public function getByID(int $id)
+    {
         try {
             $query = $this->prepare("SELECT P.title, P.content, P.timestamp, U.firstName, U.lastName FROM users U JOIN posts P ON U.id = P.usersId WHERE P.id = :postId");
 
@@ -40,19 +40,21 @@ class Post extends DB
             $query->execute();
 
             return $query->fetch(PDO::FETCH_OBJ);
-        }
+        } catch (PDOException $e) {
 
-        catch (PDOException $e){
-
-            echo "There was an error during reading: ";
-
-            echo $e->getMessage();
+            echo "There was an error during reading: " . $e->getMessage();
         }
     }
 
-    public function create() {}
+    public function create()
+    {
+    }
 
-    public function edit(int $id) {}
+    public function edit(int $id)
+    {
+    }
 
-    public function delete(int $id) {}
+    public function delete(int $id)
+    {
+    }
 }
