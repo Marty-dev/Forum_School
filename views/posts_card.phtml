@@ -1,3 +1,9 @@
+<?php
+require_once './models/Post.php';
+
+$post = new Post();
+?>
+
 <div class="tile is-parent">
     <div class="tile is-child box is-primary">
         <table class="table is-fullwidth is-hoverable">
@@ -10,16 +16,14 @@
             <?php
             if (isset($_GET['topicId'])) {
                 $topicId = htmlspecialchars($_GET['topicId']);
-                /** @noinspection PhpUndefinedVariableInspection */
-                $postArray = $db->getPostsTable($topicId);
-                //var_dump($postArray);
+                $posts = $post->getAll($topicId);
 
-                foreach ($postArray as $post) {
+                foreach ($posts as $post) {
 
                     echo '<tr class="has-text-centered">';
                     echo '<td>';
 
-                    echo '<a href="article.php?topicId="'.$topicId.'"?postId="'.$post->id.'">';
+                    echo '<a href="post.php?topicId=' . $topicId . '&postId=' . $post->id . '">';
 
                     echo $post->title;
 
@@ -32,7 +36,7 @@
                     echo $post->firstName;
                     echo $post->lastName;
 
-                    echo '<td>';
+                    echo '</td>';
 
                     echo '<td>';
 

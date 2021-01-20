@@ -4,6 +4,10 @@ require_once './models/DB.class.php';
 
 $db = new DB();
 
+require_once './models/Post.php';
+
+$post = new Post();
+
 ?>
 
 <html lang="en">
@@ -19,17 +23,21 @@ $db = new DB();
 <?php
     $topicId = htmlspecialchars($_GET['topicId']);
     $postId = htmlspecialchars($_GET['postId']);
-    $post = $db->getSinglePost($postId);
+    $post = $post->getByID(intval($postId));
+
     var_dump($post);
+    echo '<br>';
+    echo '<br>';
 
-    foreach ($post as $article) {
-
-        echo $article->firstName;
-        echo $article->lastName;
-        echo $article->title;
-        echo $article->timestamp;
-        echo $article->content;
-    }
+    echo $post->firstName;
+    echo '<br>';
+    echo $post->lastName;
+    echo '<br>';
+    echo $post->title;
+    echo '<br>';
+    echo $post->timestamp;
+    echo '<br>';
+    echo $post->content;
 ?>
 </body>
 </html>

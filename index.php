@@ -27,7 +27,7 @@
                 <div class="tile is-ancestor mt-4">
                     <?php
                         require_once './views/topics_card.phtml';
-                        require_once './views/articles_card.phtml';
+                        require_once './views/posts_card.phtml';
                     ?>
                 </div>
             </div>

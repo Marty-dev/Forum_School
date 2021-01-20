@@ -1,3 +1,9 @@
+<?php
+    require_once './models/Topic.php';
+
+    $topic = new Topic();
+?>
+
 <div class="tile is-3 is-vertical is-parent">
     <div class="tile is-child box">
 
@@ -10,22 +16,21 @@
             </thead>
 
             <?php
-            /** @noinspection PhpUndefinedVariableInspection */
-            $topicArray = $db->getTopicTable();
+            $topics = $topic->getAll();
 
-            foreach ($topicArray as $topics) {
+            foreach ($topics as $topic) {
                 echo '<tbody>';
                 echo '<tr class="">';
 
                 echo '<td>';
 
-                echo '<a href="index.php?topicId=' . $topics->id . '">' . $topics->name . '</a>';
+                echo '<a href="index.php?topicId=' . $topic->id . '">' . $topic->name . '</a>';
 
                 echo '</td>';
 
                 echo '<td class="has-text-centered">';
 
-                echo $topics->postsCount;
+                echo $topic->postsCount;
 
                 echo '</td>';
 
