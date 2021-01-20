@@ -1,0 +1,49 @@
+<div class="tile is-parent">
+    <div class="tile is-child box is-primary">
+        <table class="table is-fullwidth is-hoverable">
+            <tr class="has-text-centered">
+                <th>Title</th>
+                <th>Author</th>
+                <th>Time</th>
+            </tr>
+
+            <?php
+            if (isset($_GET['topicId'])) {
+                $topicId = htmlspecialchars($_GET['topicId']);
+                $postArray = $db->getPostsTable($topicId);
+                //var_dump($postArray);
+
+                foreach ($postArray as $post) {
+
+                    echo '<tr class="has-text-centered">';
+                    echo '<td>';
+
+                    echo '<a href="article.php?topicId="'.$topicId.'"?postId="'.$post->id.'">';
+
+                    echo $post->title;
+
+                    echo '</a>';
+
+                    echo '</td>';
+
+                    echo '<td>';
+
+                    echo $post->firstName;
+                    echo $post->lastName;
+
+                    echo '<td>';
+
+                    echo '<td>';
+
+                    echo $post->timestamp;
+
+                    echo '</td>';
+
+                    echo '</tr>';
+                }
+            }
+            ?>
+
+        </table>
+    </div>
+</div>

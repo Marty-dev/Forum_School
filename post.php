@@ -1,6 +1,6 @@
 <?php
 
-require_once 'DB.class.php';
+require_once './models/DB.class.php';
 
 $db = new DB();
 

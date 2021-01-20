@@ -1,12 +1,10 @@
 <?php
-
-    require_once 'DB.class.php';
+    require_once './models/DB.class.php';
 
     $db = new DB();
-
 ?>
 
-<html lang="en">
+<html lang="cs">
     <head>
         <title>Gaming Forum</title>
         <meta charset="utf-8">
@@ -27,43 +25,10 @@
                 </header>
 
                 <div class="tile is-ancestor mt-4">
-                    <div class="tile is-3 is-vertical is-parent">
-                        <div class="tile is-child box">
-
-                            <table class="table is-fullwidth is-hoverable">
-                                <thead class="has-text-centered">
-                                    <tr>
-                                        <th class="is-info">Topic</th>
-                                        <th class="is-info">Posts</th>
-                                    </tr>
-                                </thead>
-
-                            <?php
-                                $topicArray = $db->getTopicTable();
-
-                                foreach ($topicArray as $topics) {
-                                    echo '<tbody>';
-                                        echo '<tr class="">';
-
-                                            echo '<td>';
-
-                                                echo '<a href="posts.php?topicId='.$topics->id.'">'.$topics->name.'</a>';
-
-                                            echo '</td>';
-
-                                            echo '<td class="has-text-centered">';
-
-                                                echo $topics->postsCount;
-
-                                            echo '</td>';
-
-                                        echo '</tr>';
-                                    echo '</tbody>';
-        }
-                            ?>
-                            </table>
-                        </div>
-                    </div>
+                    <?php
+                        require_once './views/topics_card.phtml';
+                        require_once './views/articles_card.phtml';
+                    ?>
                 </div>
             </div>
         </div>
