@@ -17,10 +17,10 @@ $db = new DB();
 <body>
 
 <?php
-    $topicId = $_GET['topicId'];
-    $postId = $_GET['postId'];
+    $topicId = htmlspecialchars($_GET['topicId']);
+    $postId = htmlspecialchars($_GET['postId']);
     $post = $db->getSinglePost($postId);
-    //var_dump($post);
+    var_dump($post);
 
     foreach ($post as $article) {
 

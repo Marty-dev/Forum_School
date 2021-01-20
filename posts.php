@@ -16,7 +16,7 @@
 
     <body>
 
-    <section class="hero is-primary is-fullheight">
+    <section class="hero is-fullheight">
         <div class="hero-body>">
             <div class="container">
 
@@ -26,84 +26,95 @@
                 </p>
             </header>
 
-                <table class="table is-narrow is-hoverable mt-4">
-                    <thead class="has-text-centered">
-                    <tr>
-                        <th class="is-info">Topic</th>
-                        <th class="is-info">Posts</th>
-                    </tr>
-                    </thead>
+            <div class="tile is-ancestor mt-4">
+                <div class="tile is-3 is-vertical is-parent">
+                    <div class="tile is-child is-primary box">
 
-                    <?php
-                    $topicArray = $db->getTopicTable();
+                        <table class="table is-hoverable is-fullwidth">
+                        <thead class="has-text-centered">
+                            <tr>
+                                <th class="is-info">Topic</th>
+                                <th class="is-info">Posts</th>
+                            </tr>
+                        </thead>
 
-                    foreach ($topicArray as $topics) {
-                        echo '<tbody>';
-                            echo '<tr class="">';
+                        <?php
+                        $topicArray = $db->getTopicTable();
 
-                            echo '<td>';
+                        foreach ($topicArray as $topics) {
+                            echo '<tbody>';
+                                echo '<tr class="">';
 
-                                echo '<a href="posts.php?topicId='.$topics->id.'">'.$topics->name.'</a>';
+                                echo '<td>';
 
-                            echo '</td>';
+                                    echo '<a href="posts.php?topicId='.$topics->id.'">'.$topics->name.'</a>';
 
-                            echo '<td class="has-text-centered">';
+                                echo '</td>';
 
-                                echo $topics->postsCount;
+                                echo '<td class="has-text-centered">';
 
-                            echo '</td>';
+                                    echo $topics->postsCount;
 
-                            echo '</tr>';
-                        echo '</tbody>';
-                    }
-                    ?>
-                </table>
+                                echo '</td>';
 
-            <table class="">
-                <tr class="has-text-centered">
-                    <th>Title</th>
-                    <th>Time</th>
-                    <th>Author</th>
-                </tr>
+                                echo '</tr>';
+                            echo '</tbody>';
+                        }
+                        ?>
+                        </table>
+                    </div>
+                </div>
 
-            <?php
-                $topicId = $_GET['topicId'];
-                $postArray = $db->getPostsTable($topicId);
-                //var_dump($postArray);
+                <div class="tile is-parent">
+                    <div class="tile is-child box is-primary">
+                        <table class="table is-fullwidth is-hoverable">
+                            <tr class="has-text-centered">
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Time</th>
+                            </tr>
 
-                foreach ($postArray as $post) {
+                        <?php
+                            $topicId = htmlspecialchars($_GET['topicId']);
+                            $postArray = $db->getPostsTable($topicId);
+                            //var_dump($postArray);
 
-                    echo '<tr>';
-                        echo '<td>';
+                        foreach ($postArray as $post) {
 
-                            echo '<a href="article.php?topicId="'.$topicId.'"?postId="'.$post->id.'">';
+                                echo '<tr class="has-text-centered">';
+                                    echo '<td>';
 
-                            echo $post->title;
+                                        echo '<a href="article.php?topicId="'.$topicId.'"?postId="'.$post->id.'">';
 
-                            echo '</a>';
+                                        echo $post->title;
 
-                        echo '</td>';
+                                        echo '</a>';
 
-                        echo '<td>';
+                                    echo '</td>';
 
-                            echo $post->timestamp;
+                                    echo '<td>';
 
-                        echo '<td>';
+                                        echo $post->firstName;
+                                        echo $post->lastName;
 
-                        echo '<td>';
+                                    echo '<td>';
 
-                            echo $post->firstName;
-                            echo $post->lastName;
+                                    echo '<td>';
 
-                        echo '</td>';
+                                        echo $post->timestamp;
 
-                    echo '</tr>';
-                }
-            ?>
+                                    echo '</td>';
 
-            </table>
+                                echo '</tr>';
+                            }
+                        ?>
+
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
     </body>
 </html>
