@@ -1,10 +1,13 @@
 <?php
 
-    // TODO: Add login / logout
-
     require_once './models/DB.class.php';
 
     $db = new DB();
+
+    // TODO: Add login / logout
+    require_once './models/User.php';
+
+    $user = new User();
 ?>
 
 <html lang="cs">
