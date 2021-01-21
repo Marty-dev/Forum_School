@@ -28,31 +28,43 @@ class User extends DB
      *
      * @return bool
      */
-    public function loginUser(string $email, string $password): bool
+    public function login(string $email, string $password): bool
     {
         // functions as if it would be getByID method
 
         try {
             $query = $this->prepare("SELECT * FROM users U WHERE U.email = :email AND U.password = :password");
 
-            $query->bindParam(':username', $email);
+            $query->bindParam(':email', $email);
             $query->bindParam(':password', $password);
 
             $query->execute();
 
-            $email = $query->fetch(PDO::FETCH_OBJ);
+            $user = $query->fetch(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             echo "There was an error during reading: " . $e->getMessage();
         }
 
-        if (!empty($email)) {
-            // write data to session
+        if ($user === false) {
+            throw new Exception("User was not found!");
         }
+
+        // TODO: write data to session
 
         return $this->isLoggedIn();
     }
 
-    public function registerUser($firstName, $lastName, $email, $phone, $address, $password)
+    /**
+     * @param $firstName
+     * @param $lastName
+     * @param $email
+     * @param $phone
+     * @param $address
+     * @param $password
+     *
+     * @return bool
+     */
+    public function register($firstName, $lastName, $email, $phone, $address, $password)
     {
         $query = $this->prepare("INSERT INTO `users` (`firstName`, `lastName`, `email`, `phone`, `address`, `password`) 
                                                     VALUES (:firstName, :lastName, :email, :phone, :address, :password)");
@@ -64,9 +76,7 @@ class User extends DB
         $query->bindParam(':address', $address);
         $query->bindParam(':password', $password);
 
-        $query->execute();
-
-
+        return $query->execute();
     }
 
     /**
