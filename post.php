@@ -34,7 +34,7 @@ $post = new Post();
                 ?>
             </div>
 
-            <div class="tile is-ancestor">
+            <div class="tile is-ancestor mt-4">
                 <?php
                     require_once './views/topics_card.phtml';
                     require_once './views/singlePost_card.phtml';
