@@ -33,10 +33,9 @@ class User extends DB
         // functions as if it would be getByID method
 
         try {
-            $query = $this->prepare("SELECT * FROM users U WHERE U.email = :email AND U.password = :password");
+            $query = $this->prepare("SELECT * FROM users U WHERE U.email = :email");
 
             $query->bindParam(':email', $email);
-            $query->bindParam(':password', $password);
 
             $query->execute();
 
@@ -46,10 +45,14 @@ class User extends DB
         }
 
         if ($user === false) {
-            throw new Exception("User was not found!");
+            throw new Exception("User was not found!", 1);
         }
 
-        // TODO: write data to session
+        if (!password_verify($password, $user->password)) {
+            throw new Exception("Wrong password!", 2);
+        }
+
+        // zápis do SESSION
 
         return $this->isLoggedIn();
     }
