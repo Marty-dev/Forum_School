@@ -25,28 +25,23 @@ $post = new Post();
 
 <body>
 
-<?php
-    // TODO: Add create form
-    // TODO: Add edit form
-    // TODO: Add remove button
+<section class="hero is-fullheight">
+    <div class="hero-body>">
+        <div class="container">
+            <div class="tile is-ancestor">
+                <?php
+                    require_once './views/navbar_card.phtml';
+                ?>
+            </div>
 
-    $topicId = htmlspecialchars($_GET['topicId']);
-    $postId = htmlspecialchars($_GET['postId']);
-    $post = $post->getByID(intval($postId));
-
-    var_dump($post);
-    echo '<br>';
-    echo '<br>';
-
-    echo $post->firstName;
-    echo '<br>';
-    echo $post->lastName;
-    echo '<br>';
-    echo $post->title;
-    echo '<br>';
-    echo $post->timestamp;
-    echo '<br>';
-    echo $post->content;
-?>
+            <div class="tile is-ancestor">
+                <?php
+                    require_once './views/topics_card.phtml';
+                    require_once './views/singlePost_card.phtml';
+                ?>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>

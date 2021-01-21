@@ -26,6 +26,7 @@ $db = new DB();
             <div class="tile is-ancestor mt-4">
                 <?php
                 require_once './views/topics_card.phtml';
+
                 if(isset($_GET['form']) && $_GET['form']=="login") {
                     require_once './views/login_card.phtml';
                 }

@@ -1,0 +1,48 @@
+<?php
+    require_once './models/Post.php';
+
+    $post = new Post();
+?>
+
+<div class="tile is-parent">
+    <div class="tile is-child box is-primary has-background-danger-light">
+        <?php
+        // TODO: Add create form
+        // TODO: Add edit form
+        // TODO: Add remove button
+
+        $topicId = htmlspecialchars($_GET['topicId']);
+        $postId = htmlspecialchars($_GET['postId']);
+        $post = $post->getByID(intval($postId));
+        //var_dump($post);
+        ?>
+        <h1 class="title is-1">
+            <strong>
+                <?=$post->title?>
+            </strong>
+            <hr class="has-background-danger">
+        </h1>
+
+        <div class="subtitle is-6">
+            <p class="mb-3">
+            <strong>
+                Publicated: <?=date( 'jS F Y  \(\T\i\m\e\: H:i\)',strtotime($post->timestamp))?>
+            </strong>
+            </p>
+            <p class="mb-3">
+            <strong>
+                Author: <?=$post->firstName?> <?=$post->lastName?>
+            </strong>
+            </p>
+        </div>
+
+        <div class="card-content">
+            <div class="content">
+                <p>
+                    <?=$post->content?>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
