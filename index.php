@@ -16,6 +16,7 @@
         <meta charset="utf-8">
         <script src="https://kit.fontawesome.com/5cd685aa1f.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     </head>
 
     <body>
@@ -34,6 +35,13 @@
                         require_once './views/posts_card.phtml';
                     ?>
                 </div>
+                    <footer class="card-footer">
+                        <p class="card-footer-item">
+                        <span>
+                            © 2021 Martin Velek
+                        </span>
+                        </p>
+                    </footer>
             </div>
         </div>
     </section>
