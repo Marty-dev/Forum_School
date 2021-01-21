@@ -23,33 +23,50 @@ class User extends DB
     }
 
     /**
-     * @param string $username
+     * @param string $email
      * @param string $password MD5 hash
      *
      * @return bool
      */
-    public function login(string $username, string $password): bool
+    public function loginUser(string $email, string $password): bool
     {
         // functions as if it would be getByID method
 
         try {
-            $query = $this->prepare("SELECT * FROM users U WHERE U.username = :username AND U.password = :password");
+            $query = $this->prepare("SELECT * FROM users U WHERE U.email = :email AND U.password = :password");
 
-            $query->bindParam(':username', $username);
+            $query->bindParam(':username', $email);
             $query->bindParam(':password', $password);
 
             $query->execute();
 
-            $user = $query->fetch(PDO::FETCH_OBJ);
+            $email = $query->fetch(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             echo "There was an error during reading: " . $e->getMessage();
         }
 
-        if (!empty($user)) {
+        if (!empty($email)) {
             // write data to session
         }
 
         return $this->isLoggedIn();
+    }
+
+    public function registerUser($firstName, $lastName, $email, $phone, $address, $password)
+    {
+        $query = $this->prepare("INSERT INTO `users` (`firstName`, `lastName`, `email`, `phone`, `address`, `password`) 
+                                                    VALUES (:firstName, :lastName, :email, :phone, :address, :password)");
+
+        $query->bindParam(':firstName', $firstName);
+        $query->bindParam(':lastName', $lastName);
+        $query->bindParam(':email', $email);
+        $query->bindParam(':phone', $phone);
+        $query->bindParam(':address', $address);
+        $query->bindParam(':password', $password);
+
+        $query->execute();
+
+
     }
 
     /**
