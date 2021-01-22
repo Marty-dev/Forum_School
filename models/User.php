@@ -24,7 +24,7 @@ class User extends DB
 
     /**
      * @param string $email
-     * @param string $password MD5 hash
+     * @param string $password
      *
      * @return bool
      */
@@ -52,22 +52,21 @@ class User extends DB
             throw new Exception("Wrong password!", 2);
         }
 
-        // zápis do SESSION
+        $_SESSION['user'] = $user;
 
         return $this->isLoggedIn();
     }
 
     /**
-     * @param $firstName
-     * @param $lastName
-     * @param $email
-     * @param $phone
-     * @param $address
-     * @param $password
-     *
+     * @param string $firstName
+     * @param string $lastName
+     * @param string $email
+     * @param int $phone
+     * @param string $address
+     * @param string $password
      * @return bool
      */
-    public function register($firstName, $lastName, $email, $phone, $address, $password)
+    public function register(string $firstName, string $lastName, string $email, int $phone, string $address, string $password)
     {
         $query = $this->prepare("INSERT INTO `users` (`firstName`, `lastName`, `email`, `phone`, `address`, `password`) 
                                                     VALUES (:firstName, :lastName, :email, :phone, :address, :password)");

@@ -41,19 +41,6 @@
                             © 2021 Martin Velek
                         </span>
                         </p>
-                        <p>
-                            <?php
-                                $password = "CykaBlyat";
-                                $passwordEncrypt = password_hash($password, PASSWORD_BCRYPT );
-                                echo $passwordEncrypt;
-
-                                if(password_verify($password, $passwordEncrypt)) {
-                                    echo '<br>Úspěch';
-                                } else {
-                                    echo '<br>Fail';
-                                }
-                            ?>
-                        </p>
                     </footer>
             </div>
         </div>
