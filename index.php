@@ -10,6 +10,11 @@
 
     $user = new User();
 
+    $debug = true;
+    if ($debug) {
+        $user->login('lumitron@seznam.cz', '25802580');
+    }
+
     dump($_SESSION);
 
 ?>
