@@ -14,8 +14,7 @@ class User extends DB
      */
     public function isLoggedIn(): bool
     {
-        if (isset($_SESSION['user_hash'])) {
-            // check hash
+        if (isset($_SESSION['user'])) {
             return true;
         }
 
@@ -44,7 +43,7 @@ class User extends DB
             echo "There was an error during reading: " . $e->getMessage();
         }
 
-        if ($user === false) {
+        if (!empty($user)) {
             throw new Exception("User was not found!", 1);
         }
 
@@ -53,6 +52,7 @@ class User extends DB
         }
 
         $_SESSION['user'] = $user;
+        $_SESSION['password'] = $password;
 
         return $this->isLoggedIn();
     }

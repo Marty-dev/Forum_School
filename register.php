@@ -38,16 +38,13 @@ foreach ($inputs as $input => $value) {
 if($registrationHasErrors) {
     exit();
 }
-
-// kontrola POSTu
-// volání register() metody
-// ověření
-
+/** Check if password is correct */
 if($inputs[INPUT_PASSWORD] === $inputs[INPUT_CONF_PASSWORD]) {
 
     $passString = $inputs[INPUT_PASSWORD];
     $passHash = password_hash($passString, PASSWORD_BCRYPT);
 
+    /** After check, values are written in DB */
     $user->register($inputs[INPUT_FIRST_NAME], $inputs[INPUT_LAST_NAME], $inputs[INPUT_EMAIL], $inputs[INPUT_PHONE], $inputs[INPUT_ADDRESS], $passHash);
 
     header('Location: form.php?form=login');

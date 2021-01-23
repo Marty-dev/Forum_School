@@ -20,12 +20,10 @@
 require_once './models/DB.class.php';
 require_once './models/User.php';
 
-/* kontrola postu */
-if (true) {
+if (!empty($_POST['email'] && !empty($_POST['password']))) {
     $user = new User();
     try {
         $user->login($_POST['email'], $_POST['password']);
-        // redirect on index
     } catch (Exception $e) {
         switch ($e->getCode()) {
             case 1:
@@ -41,7 +39,7 @@ if (true) {
                 break;
         }
 
+        header('Location: index.php');
         // redirect s errorem zpět na login form
     }
 }
-

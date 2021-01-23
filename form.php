@@ -29,6 +29,7 @@ $db = new DB();
 
                 if(isset($_GET['form']) && $_GET['form']=="login") {
                     require_once './views/login_card.phtml';
+                    var_dump($_SESSION);
                 }
                 if(isset($_GET['form']) && $_GET['form']=="register") {
                     require_once './views/register_card.phtml';
