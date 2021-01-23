@@ -32,23 +32,25 @@ if (!empty($_POST['email'] && !empty($_POST['password']))) {
         switch ($e->getCode()) {
             case 1:
                 // neexistuje
-                throw new Exception($e->getMessage());
+                // throw new Exception($e->getMessage());
                 break;
 
             case 2:
                 // špatné heslo
-                throw new Exception($e->getMessage());
+                // throw new Exception($e->getMessage());
                 break;
 
             default:
                 // nějaká chyba
-                throw new Exception($e->getMessage());
+                // throw new Exception($e->getMessage());
                 break;
         }
 
-        header('Location: form.php?form=login');
+        header('Location: form.php?form=login&error=' . $e->getCode());
+        exit();
         // redirect s errorem zpět na login form
     }
 
     header('Location: index.php');
+    exit();
 }
