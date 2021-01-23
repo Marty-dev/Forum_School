@@ -1,5 +1,6 @@
 <?php
 
+    require_once './helper_functions.php';
     require_once './models/DB.class.php';
 
     $db = new DB();
@@ -8,6 +9,9 @@
     require_once './models/User.php';
 
     $user = new User();
+
+    dump($_SESSION);
+
 ?>
 
 <html lang="cs">

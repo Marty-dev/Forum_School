@@ -19,27 +19,36 @@
 
 require_once './models/DB.class.php';
 require_once './models/User.php';
+require_once './helper_functions.php';
 
 if (!empty($_POST['email'] && !empty($_POST['password']))) {
     $user = new User();
+
+    dump($_SESSION);
+
     try {
         $user->login($_POST['email'], $_POST['password']);
     } catch (Exception $e) {
         switch ($e->getCode()) {
             case 1:
                 // neexistuje
+                throw new Exception($e->getMessage());
                 break;
 
             case 2:
                 // špatné heslo
+                throw new Exception($e->getMessage());
                 break;
 
             default:
                 // nějaká chyba
+                throw new Exception($e->getMessage());
                 break;
         }
 
-        header('Location: index.php');
+        header('Location: form.php?form=login');
         // redirect s errorem zpět na login form
     }
+
+    header('Location: index.php');
 }

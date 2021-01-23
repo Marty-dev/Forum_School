@@ -43,7 +43,7 @@ class User extends DB
             echo "There was an error during reading: " . $e->getMessage();
         }
 
-        if (!empty($user)) {
+        if (empty($user)) {
             throw new Exception("User was not found!", 1);
         }
 
@@ -52,7 +52,6 @@ class User extends DB
         }
 
         $_SESSION['user'] = $user;
-        $_SESSION['password'] = $password;
 
         return $this->isLoggedIn();
     }
