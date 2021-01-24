@@ -1,7 +1,18 @@
 <?php
+require_once './helper_functions.php';
 require_once './models/DB.class.php';
-
 $db = new DB();
+
+require_once './models/User.php';
+$user = New User();
+
+dump($_SESSION['user']);
+echo $_SESSION['user']->id;
+
+/*$debug = true;
+if ($debug) {
+$user->login('lumitron@seznam.cz', '25802580');*/
+
 ?>
 
 <html lang="cs">
@@ -29,10 +40,12 @@ $db = new DB();
 
                 if(isset($_GET['form']) && $_GET['form']=="login") {
                     require_once './views/login_card.phtml';
-                    var_dump($_SESSION);
                 }
                 if(isset($_GET['form']) && $_GET['form']=="register") {
                     require_once './views/register_card.phtml';
+                }
+                if(isset($_GET['form']) && $_GET['form']=="add") {
+                    require_once './views/addPost_card.phtml';
                 }
                 ?>
             </div>

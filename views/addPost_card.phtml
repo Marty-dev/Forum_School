@@ -1,0 +1,58 @@
+<?php
+require_once './models/Topic.php';
+$topic = New Topic();
+?>
+
+<div class="tile is-parent">
+    <div class="tile is-child box is-primary">
+        <div class="card">
+            <div class="card-content">
+
+                <form action="../addPost.php" method="post" id="loginForm">
+                    <div class="field">
+                        <label class="label">Title:</label>
+                        <div class="control">
+                            <input class="input is-rounded" type="text" id="title" name="title" placeholder="Title" required="required">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Choose topic:</label>
+                        <div class="select is-rounded">
+                            <label class="label">
+                                <select class="is-focused has-background-grey-lighter" id="topic" name="topic">
+                                    <?php
+                                    $topics = $topic->selectAll();
+                                    foreach($topics as $item) {
+                                        echo '<option>';
+                                        echo $item->name;
+                                        echo '</option>';
+                                    }?>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Content:</label>
+                        <div class="control">
+                            <input class="input is-rounded" type="text" id="content" name="content" placeholder="Content" required="required">
+                        </div>
+                    </div>
+
+
+
+                    <br/>
+
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-danger is-fullwidth is-rounded" id="addPost" type="submit">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

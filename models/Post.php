@@ -46,8 +46,23 @@ class Post extends DB
         }
     }
 
-    public function create()
+    public function create(string $title, string $content, int $usersId, int $topicsId)
     {
+        try {
+            $query = $this->prepare("INSERT INTO `posts` (`title`, `content`, `usersId`, `topicsId`) 
+                                                    VALUES (:title, :content, :usersId, :topicsId)");
+
+            $query->bindParam(':title', $title);
+            $query->bindParam(':content', $content);
+            $query->bindParam(':usersId', $usersId);
+            $query->bindParam(':topicsId', $topicsId);
+
+            return  $query->execute();
+
+        } catch (PDOException $e) {
+            echo "There was an error during reading: " . $e->getMessage();
+        }
+
     }
 
     public function edit(int $id)
