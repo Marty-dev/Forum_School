@@ -11,7 +11,8 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
-                        <a class="button is-success mr-6">
+                        <?php if (isset($_SESSION['user'])) {?>
+                        <a class="button is-success mr-6" href="../form.php?form=add">
                             <span class="icon">
                                 <i class="far fa-plus-square"></i>
                             </span>
@@ -19,12 +20,23 @@
                                 <strong>New Post</strong>
                             </span>
                         </a>
-                        <a class="button is-danger" href="../form.php?form=register">
+                        <?php }
+                        if (!isset($_SESSION['user'])) {
+                        ?>
+                        <a class="button is-danger is-rounded" href="../form.php?form=register">
                             <strong>Sign Up</strong>
                         </a>
-                        <a class="button is-black" href="../form.php?form=login">
+                        <a class="button is-black is-rounded" href="../form.php?form=login">
                             <strong>Log In</strong>
                         </a>
+                        <?php }
+                        else {
+                        ?>
+
+                        <a class="button is-danger is-rounded" href="../logout.php" >
+                            <strong>Log Out</strong>
+                        </a>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

@@ -7,10 +7,6 @@
 <div class="tile is-parent">
     <div class="tile is-child box is-primary has-background-danger-light">
         <?php
-        // TODO: Add create form
-        // TODO: Add edit form
-        // TODO: Add remove button
-
         $topicId = htmlspecialchars($_GET['topicId']);
         $postId = htmlspecialchars($_GET['postId']);
         $post = $post->getByID(intval($postId));

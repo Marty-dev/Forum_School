@@ -21,4 +21,31 @@ class Topic extends DB
             echo "There was an error during reading: " . $e->getMessage();
         }
     }
+
+    public function selectAll () {
+        try {
+            $query = $this->prepare("SELECT * FROM topics");
+
+            $query->execute();
+
+            return $query->fetchAll(PDO::FETCH_OBJ);
+
+        } catch (PDOException $e) {
+            echo "There was an error during reading: " . $e->getMessage();
+        }
+    }
+
+    public function selectByName ($topic) {
+        try {
+            $query = $this->prepare("SELECT id FROM topics WHERE 'name' = :topic");
+
+            $query->bindParam(':name', $topic);
+            $query->execute();
+
+            return $query->fetch(PDO::FETCH_OBJ);
+
+        } catch (PDOException $e) {
+            echo "There was an error during reading: " . $e->getMessage();
+        }
+    }
 }
