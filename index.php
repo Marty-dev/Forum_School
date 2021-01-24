@@ -5,7 +5,6 @@
 
     $db = new DB();
 
-    // TODO: Add login / logout
     require_once './models/User.php';
 
     $user = new User();
@@ -15,8 +14,8 @@
         $user->login('lumitron@seznam.cz', '25802580');
     }*/
 
-    dump($_SESSION['user']);
-    echo $_SESSION['user']->id;
+    /*dump($_SESSION['user']);
+    echo $_SESSION['user']->id;*/
 
 ?>
 

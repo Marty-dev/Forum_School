@@ -46,6 +46,13 @@ class Post extends DB
         }
     }
 
+    /**
+     * @param string $title
+     * @param string $content
+     * @param int $usersId
+     * @param int $topicsId
+     * @return array
+     */
     public function create(string $title, string $content, int $usersId, int $topicsId)
     {
         try {
@@ -57,7 +64,9 @@ class Post extends DB
             $query->bindParam(':usersId', $usersId);
             $query->bindParam(':topicsId', $topicsId);
 
-            return  $query->execute();
+            $query->execute();
+
+            return $query->fetchAll(PDO::FETCH_OBJ);
 
         } catch (PDOException $e) {
             echo "There was an error during reading: " . $e->getMessage();

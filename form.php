@@ -6,8 +6,8 @@ $db = new DB();
 require_once './models/User.php';
 $user = New User();
 
-dump($_SESSION['user']);
-echo $_SESSION['user']->id;
+/*dump($_SESSION['user']);
+echo $_SESSION['user']->id;*/
 
 /*$debug = true;
 if ($debug) {

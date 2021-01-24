@@ -22,6 +22,9 @@ class Topic extends DB
         }
     }
 
+    /**
+     * @return array
+     */
     public function selectAll () {
         try {
             $query = $this->prepare("SELECT * FROM topics");
@@ -35,6 +38,10 @@ class Topic extends DB
         }
     }
 
+    /**
+     * @param $topic
+     * @return mixed
+     */
     public function selectByName ($topic) {
         try {
             $query = $this->prepare("SELECT id FROM topics WHERE 'name' = :topic");
